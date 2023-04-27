@@ -1,0 +1,148 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+body {
+    display: grid;
+    grid-template-columns: auto 20%;
+    grid-template-rows: 20% auto auto auto;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    z-index: 0;
+    background-color: black;
+}
+
+/* Header title game */
+
+.nameGame {
+    display: grid;
+    grid-column: 1/4;
+    grid-row: 1/2;
+    margin: 0;
+    justify-content: center;
+    color:aliceblue;
+    font-size: 3rem;
+}
+
+/* Start Page */
+
+.choosePlayer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    grid-column: 1/4;
+    grid-row: 2/5;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background-color: antiquewhite;
+}
+
+.choosePlayer h2 {
+    grid-column: 1/2;
+    font-size: 4rem;
+}
+
+.choosePlayer h3 {
+    grid-row: 2/3;
+    font-size: 3rem;
+    margin-bottom: 0;
+}
+
+.choosePlayer .playerNameForm {
+    grid-row: 3/4;
+    display: grid;
+    grid-template-rows: auto auto 40%;
+}
+
+.choosePlayer .playerNameForm label {
+    grid-row: 1/2;
+    font-size: 2rem;
+}
+
+.choosePlayer .playerNameForm input[type="text"] {
+    grid-row: 2/3;
+    max-width: 40%;
+    border: none;
+    border-bottom: 2px solid;
+    font-size: 1.5rem;
+    background-color: transparent;
+    margin-bottom: 3%;
+}
+
+
+.choosePlayer .playerNameForm input[type="button"] {
+    grid-row: 3/4;
+    width: 15vw;
+    height: 6vh;
+    border: 2px solid;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    color: white;
+    background-color: blue;
+    cursor: pointer;
+}
+
+/* Game Page */
+
+.memoryGame {
+    display: none;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    gap: 5px;
+    grid-column: 1/4;
+    grid-row: 2/5;
+    background-color: lightseagreen;
+}
+
+
+
+/* Winner Page */
+
+.winnerGame {
+    display: none;
+    grid-template-rows: auto auto auto;
+    grid-column: 1/2;
+    grid-row: 2/4;
+    justify-content: center;
+    z-index: 1;
+    background-color: bisque;
+}
+
+.winnerGame h2 {
+    grid-row: 1/2;
+    font-size: 3rem;
+}
+
+.winnerGame .timeWinner {
+    grid-row: 2/3;
+    font-size: 2re;
+}
+
+.winnerGame button {
+    grid-row: 3/4;
+    width: 15vw;
+    height: 6vh;
+    border: 2px solid;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    color: white;
+    background-color: blue;
+    cursor: pointer;
+}
+
+/* User Scores */
+
+.userScores {
+    display: grid;
+    grid-template-rows: auto auto auto auto auto;
+    grid-column: 3/4;
+    grid-row: 2/5;
+    max-height: 100%;
+    justify-content: center;
+    font-size: 2rem;
+    z-index: 2;
+    background-color: lightblue;
+    opacity: 0.6;
+}

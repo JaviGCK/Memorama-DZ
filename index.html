@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memorama-DZ</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script src="main.js" defer></script>
+</head>
+<body>
+
+    <!--Start section, we have here a form to chooice a user & button to start-->
+    <header class="nameGame">
+        <h1>NOMBRE JUEGO</h1>
+    </header>
+    <section class="choosePlayer">
+        <h2>Memory Game</h2>
+        
+        <h3>Chose a player name</h3>
+
+        <form class="playerNameForm">
+            <label for="user">Player name</label>
+            <input type="text" id="playerName" name="playerName"/>
+            <input type="button" id="buttonStart" value="Start Game"/>
+        </form>
+    </section>
+
+    <!--Game, we have here the table game-->
+
+    <main class="memoryGame">
+        <template id="templateCard">
+            <div class="cardDz">
+                <div class="cardFront"></div>
+                <div class="cardBack"></div>
+            </div>
+        </template>
+
+    </main>
+
+    <!--winner page-->
+
+    <section class="winnerGame">
+        <h2>Your won!</h2>
+        <div class="timerWinner"></div>
+        <button class="buttonPlayAgain" id="buttonPlayAgain">
+            <span>Play Again</span>
+        </button>
+    </section>
+
+    <!--User score page-->
+
+    <section class="userScores">
+        <h2>User Scores</h2>
+
+        <div class="userScores" id="userScoresScreem">
+
+        </div>
+    </section>
+</body>
+</html>
