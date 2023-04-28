@@ -1,87 +1,81 @@
 html {
-    width: 100%;
-    height: 100%;
-}
-body {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 10% auto 10%;
-    grid-template-rows: 20% 50% 30%;
-}
-
-header {
-    grid-column: 2/3;
-    grid-row: 1/2;
-}
-
-main {
-    grid-column: 2/3;
-    grid-row: 2/3;
-    display: grid; 
-    grid-template-columns: auto auto auto auto;
-    grid-template-rows: auto auto auto auto;
-    gap: 2%;
-    border: 2px solid;
-    border-radius: 10px;
-    margin: 2%;
-}
-
-.card {
-    display: inline-block;
-    margin: 10px;
-    width: 80%;
-    height: 90%;
-    border: 2px solid;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 1s;
+  width: 100%;
+  height: 100%;
   }
-
-  .card:hover {
-    transform: rotateY(180deg);
+  body {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 10% auto 10%;
+  grid-template-rows: 20% 50% 30%;
   }
-
+  
+  header {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  }
+  
+  main {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto auto auto;
+  gap: 2%;
+  border: 2px solid;
+  border-radius: 10px;
+  margin: 2%;
+  }
+  
+  .card {
+  margin: 10px;
+  width: 80%;
+  height: 80%;
+  border: 2px solid;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  cursor: pointer;
+  }
+  
   .cardFront,
   .cardBack {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
   }
-
-  .cardFront {
-    background-color: #f1f1f1;
-  }
-
+  
   .cardBack {
-    background-color: #4caf50;
-    transform: rotateY(180deg);
+  transform: rotateY(180deg);
   }
-
+  
+  .flipped {
+  transform: rotateY(180deg);
+  }
+  
   .card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   }
-
-
-footer {
-    grid-column: 2/3;
-    grid-row: 3/4;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-template-rows: auto auto;
-}
-
-.startBtn {
-    grid-column: 2/4;
-    grid-row: 2/3;
-    width: 60%;
-    height: 40%;
-    border: 2px solid;
-    border-radius: 15px;
-    justify-content: center;
-    background-color: blue;
-
-}
+  
+  footer {
+  grid-column: 2/3;
+  grid-row: 3/4;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto;
+  }
+  
+  .startBtn {
+  grid-column: 2/4;
+  grid-row: 2/3;
+  width: 60%;
+  height: 40%;
+  border: 2px solid;
+  border-radius: 15px;
+  justify-content: center;
+  background-color: blue;
+  }
+  
