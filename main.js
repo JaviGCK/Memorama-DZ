@@ -91,9 +91,8 @@ function startGame() {
   });
 
 }  
-
 function flipCard(event) {
-  this.classList.add("flipped");
+this.classList.add("flipped");
   const flippedcard = document.querySelectorAll(".flipped:not(.matchCard)");
   if (flippedcard.length === 2) {
     compare(flippedcard);
@@ -101,9 +100,20 @@ function flipCard(event) {
 }
 
 function compare(comparedCard) {
-  let card1 = comparedCard[0];
-  
-  console.log(comparedCard);
+  let card1 = comparedCard[0]
+  let card2 = comparedCard[1]
+  let card1Image = card1.firstElementChild.firstElementChild.src;
+  let card2Image = card2.firstElementChild.firstElementChild.src;
+
+  if (card1Image === card2Image) {
+    card1.classList.add('matchCard');
+    card2.classList.add('matchCard');
+  } else {
+    setTimeout(() => {
+      card1.classList.remove('flipped');
+      card2.classList.remove('flipped');
+    }, 1000);
+  }
   //console.log(card1.firstElementChild.firstElementChild.src);
   //
 }
