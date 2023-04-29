@@ -10,7 +10,7 @@ html {
   grid-template-rows: 20% 50% 30%;
   }
   
-  header {
+  .header {
   grid-column: 2/3;
   grid-row: 1/2;
   }
@@ -29,8 +29,8 @@ html {
   
   .card {
   margin: 10px;
-  width: 80%;
-  height: 80%;
+  max-width: 120px;
+  max-height: 150px;
   border: 2px solid;
   position: relative;
   transform-style: preserve-3d;
@@ -48,6 +48,7 @@ html {
   
   .cardBack {
   transform: rotateY(180deg);
+  background-color: black;
   }
   
   .flipped {
