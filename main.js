@@ -3,18 +3,17 @@ const template = document.querySelector("#templateCard");
 const main = document.querySelector("main");
 const cards = document.querySelectorAll(".card");
 const timer = document.querySelector("#board");
+const scoreBoard = document.querySelector("#score");
 
 //addEventlistener//
 
-startButton.addEventListener("click", startGame);
-
-
+startButton.addEventListener("click", resetGame);
 
 //Images on Array//
 
 const data = [
   {
-    backImgSrc: "images/310795.png",
+    backImgSrc: "images/310795.jpg",
     frontImgSrc: "images/465254.jpg",
   },
   {
@@ -68,7 +67,13 @@ function shuffle() {
 
 // Start Game//
 
+let countIntervalId;
+
 function startGame() {
+
+  clearInterval(countIntervalId);
+  timer.textContent = "";
+
   const cardsToRemove = document.querySelectorAll(".card");
   cardsToRemove.forEach((element) => main.removeChild(element));
 
@@ -81,25 +86,47 @@ function startGame() {
     main.appendChild(card);
   });
 
+  let totalTime = 100;
+  countIntervalId = setInterval(() => {
+    if (timer.textContent !== "finish") {
+      totalTime--;
+      timer.textContent = totalTime;
+    } else {
+      clearInterval(countIntervalId);
+    }
+  }, 1000);
   
-  totalTime = 60;
-  countDown();
-  setTimeout(stopTimer, 60000);
+    scoreBoard.textContent = ""
+    finishTimer();
+    
+} 
   
-}
+//Reset Game//
+
+function resetGame() {
+
+    startGame();
+    
+  }
+  
 //flipCard//
 
 function flipCard(event) {
+  if (timer.textContent !== "finish") {
 this.classList.add("flipped");
-  const flippedcard = document.querySelectorAll(".flipped:not(.matchCard)");
-  if (flippedcard.length === 2) {
-    compare(flippedcard);
+} else {this.classList.remove("flipped");}
+const flippedcard = document.querySelectorAll(".flipped:not(.matchCard)");
+if (flippedcard.length === 2) {
+  compare(flippedcard);
   }
+const matchCard = document.querySelectorAll(".matchCard");
+if (matchCard.length === 16) {
+  scoreBoard.textContent = timer.textContent;
+  clearInterval(countIntervalId);
+}
+// winner page!! 
 }
 
-function removeClassFlip() {
-}
-//setTimeout(function(){flipCard = {}}, 6000);
 //Compare//
 
 function compare(comparedCard) {
@@ -121,16 +148,9 @@ function compare(comparedCard) {
 
 // timer//
 
-function countDown() {
-  if(timer.textContent !== "finish") {
-    totalTime--;
-    timer.textContent = totalTime;
-    setTimeout(countDown, 1000);
-  } else {clearTimeout(countDown)};
-  console.log(totalTime);
-}
-
-function stopTimer() {
+function finishTimer() {
+  const stopTime = setTimeout(() => {
     timer.textContent = "finish";
-
+  }, 100000);
+    //loser page
 }
