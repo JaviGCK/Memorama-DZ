@@ -6,13 +6,23 @@ html {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 10% auto 10%;
+  grid-template-columns: auto auto auto;
   grid-template-rows: 20% 50% 30%;
   }
   
-  .header {
+  header {
   grid-column: 2/3;
   grid-row: 1/2;
+  text-align: center;
+  }
+
+  .userGame {
+    display: none;
+  }
+
+  .startPage {
+    grid-column: 2/3;
+    grid-row: 2/3;
   }
   
   main {
@@ -25,6 +35,9 @@ html {
   border: 2px solid;
   border-radius: 10px;
   margin: 2%;
+  background-image: url(images/World\ Martial\ Arts\ Tournament\ BG\ [Dokkan\ Battle]\ by\ Maxiuchiha22\ on\ DeviantArt.png);
+  background-size: cover;
+
   }
   
   .card {
@@ -61,22 +74,45 @@ html {
   object-fit: cover;
   }
   
-  footer {
+  .boardTimeStartGame {
   grid-column: 2/3;
   grid-row: 3/4;
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto;
   grid-template-rows: auto auto;
+  justify-content: center;
+  }
+
+  .boardTimeStartGame div {
+    grid-row: 1/2;
+    text-align: center;
+
   }
   
   .startBtn {
-  grid-column: 2/4;
+  grid-column: 2/3;
   grid-row: 2/3;
-  width: 60%;
-  height: 40%;
+  width: 240px;
+  height: 60px;
   border: 2px solid;
   border-radius: 15px;
   justify-content: center;
   background-color: blue;
   }
   
+
+  /* media querys */
+
+  @media (min-width: 600px) {
+    body {
+      background-color: blue;
+    }
+    
+    .userGame {
+      display: grid;
+      grid-column: 3/4;
+      grid-row: 2/3;
+      background-color: aliceblue;
+    }
+  }
+
