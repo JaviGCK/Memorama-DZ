@@ -16,17 +16,18 @@ bodypage.insertAdjacentHTML("beforeend", `
 const playGame = document.querySelector("#startGameButton");
 playGame.addEventListener("click", nextPage);
 }
+
 function nextPage() {
+  const userInput = document.querySelector("#userInput").value;
+  localStorage.setItem("userName", userInput);
   const bodypage = document.querySelector("body");
   const lastPage = document.querySelector("#current-page");
   lastPage.remove();
   bodypage.insertAdjacentHTML("beforeend", `
   <section class="userGame" id="userGame">
-    <h2 class="users">User Scores</h2>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
+    <ul class="users">User Scores</h2>
+      
+    </ul>
   </section>
 
   <main>
@@ -59,9 +60,9 @@ function nextPage() {
   `);
   const startButton = document.querySelector("#startBtn");
   startButton.addEventListener("click", startGame);
-
 }
 
+//Last page finish Game//
 
 function gameOver() {
   const bodypage = document.querySelector("body");
@@ -77,6 +78,7 @@ function gameOver() {
   `);
   const playAgainLoser = document.querySelector("#loserPage");
   playAgainLoser.addEventListener("click", removeFinalPage);
+  removeFinalPage();
 }
 
 function finishGame() {
@@ -84,21 +86,51 @@ function finishGame() {
   bodypage.insertAdjacentHTML("beforeend", `
   <section class="winnerPage" id="winnerPage">
         <h2 class="yourWon">Your Won!</h2>
-        <span>
+        <div id="winnerPoint">
 
-        </span>
+        </div>
         <button class="playAgain" id="playAgain">Play again</button>
     </section>
   `); 
+  const scoreBoard = document.querySelector("#score");
+  const winnerScore = document.querySelector("#winnerPoint")
+  winnerScore.textContent =  scoreBoard.textContent + " points";
+  localStorage.setItem("Pointuser", winnerScore.textContent);
   const playAgainWinner = document.querySelector("#winnerPage");
-  playAgainWinner.addEventListener("click", removeFinalPage); 
+  playAgainWinner.addEventListener("click", removeFinalPage);
+  const userName = localStorage.getItem("userName");
+  const totalPoints = localStorage.getItem("Pointuser");
+  const finalScore = {
+    name: userName,
+    score: totalPoints
+  };
+  let rankingData;
+  if(localStorage.getItem("rankingData") !== null) {
+    rankingData = JSON.parse(localStorage.getItem("rankingData"));
+    
+  } else { 
+    console.log("estoy dentro");
+    rankingData = [];
+   
+  }
+  console.log(rankingData);
+  rankingData.unshift(finalScore);
+  localStorage.setItem("rankingData", JSON.stringify(rankingData));
+
+  const userList = document.querySelector(".user");
+  for (let i = 0; i < 6; i++) {
+    const li = document.createElement("li");
+    li.innerText = `${rankingData[i].name}: ${rankingData[i].score}`;
+    userList.appendChild(li);
+  }
+
 }
 
 function removeFinalPage() {
   const playAgainWinner = document.querySelector("#winnerPage");
-  playAgainWinner.remove();
   const playAgainLoser = document.querySelector("#loserPage");
-  playAgainLoser.remove();
+  if(playAgainWinner === null) playAgainLoser.remove();
+  else playAgainWinner.remove();
   
 }
 //Images on Array//
@@ -140,6 +172,34 @@ const data = [
 
 const doubledData = [...data, ...data];
 
+// Start Game//
+
+function startGame() {
+  const timer = document.querySelector("#board");
+  const template = document.querySelector("#templateCard");
+  const main = document.querySelector("main");
+  const cards = document.querySelectorAll(".card");
+  const scoreBoard = document.querySelector("#score");
+  clearInterval(countIntervalId);
+  timer.textContent = "";
+  scoreBoard.textContent = ""
+  const cardsToRemove = document.querySelectorAll(".card");
+  cardsToRemove.forEach((element) => main.removeChild(element));
+
+  const shuffledCards = shuffle();
+  shuffledCards.forEach(({ frontImgSrc, backImgSrc }) => {
+    const card = template.content.cloneNode(true).querySelector(".card");
+    card.querySelector(".cardFront img").src = frontImgSrc;
+    card.querySelector(".cardBack img").src = backImgSrc;
+    card.addEventListener("click", flipCard)
+    main.appendChild(card);
+  });
+
+  timeS();
+
+  finishTimer();
+}
+
 //random card//
 
 function shuffle() {
@@ -157,39 +217,6 @@ function shuffle() {
   return randomArray;
 }
 
-// Start Game//
-
-
-function startGame() {
-  const timer = document.querySelector("#board");
-  const template = document.querySelector("#templateCard");
-  const main = document.querySelector("main");
-  const cards = document.querySelectorAll(".card");
-  const scoreBoard = document.querySelector("#score");
-  clearInterval(countIntervalId);
-  timer.textContent = "";
-
-  const cardsToRemove = document.querySelectorAll(".card");
-  cardsToRemove.forEach((element) => main.removeChild(element));
-
-  const shuffledCards = shuffle();
-  shuffledCards.forEach(({ frontImgSrc, backImgSrc }) => {
-    const card = template.content.cloneNode(true).querySelector(".card");
-    card.querySelector(".cardFront img").src = frontImgSrc;
-    card.querySelector(".cardBack img").src = backImgSrc;
-    card.addEventListener("click", flipCard)
-    main.appendChild(card);
-  });
-
-  timeS();
-
-  scoreBoard.textContent = ""
-  finishTimer();
-
-}
-
-
-
 //flipCard//
 
 function flipCard() {
@@ -204,9 +231,7 @@ function flipCard() {
   }
 
 
-}
-// winner page!! 
-
+} 
 
 //Compare//
 
@@ -234,6 +259,7 @@ function compare(comparedCard) {
     scoreBoard.textContent = timer.textContent;
     setTimeout(() => {
       finishGame();
+      
     }, 3000);
   }
 }
@@ -265,3 +291,17 @@ function timeS() {
 }
 
 
+
+//Save Data//
+
+function saveData() {
+  
+}
+
+function recoveryData() {
+  
+}
+
+//I have to finish the css styles, 
+//have the point data added to the saved point data
+// and display in the user scores part
